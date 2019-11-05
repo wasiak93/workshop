@@ -4,6 +4,7 @@ import {ControlBrick} from "./com_control_brick";
 import {ControlPaddle} from "./com_control_paddle";
 import {Draw} from "./com_draw";
 import {Move} from "./com_move";
+import {Scale} from "./com_scale";
 import {Transform2D} from "./com_transform2d";
 
 export const enum Get {
@@ -14,6 +15,7 @@ export const enum Get {
     Draw,
     Move,
     Transform2D,
+    Scale,
 }
 
 export interface ComponentData {
@@ -21,6 +23,7 @@ export interface ComponentData {
     [Get.ControlPaddle]: Array<ControlPaddle>;
     [Get.ControlBall]: Array<ControlBall>;
     [Get.ControlBrick]: Array<ControlBrick>;
+    [Get.Scale]: Array<Scale>;
     [Get.Draw]: Array<Draw>;
     [Get.Move]: Array<Move>;
     [Get.Transform2D]: Array<Transform2D>;
@@ -31,6 +34,7 @@ export const enum Has {
     ControlPaddle = 1 << Get.ControlPaddle,
     ControlBall = 1 << Get.ControlBall,
     ControlBrick = 1 << Get.ControlBrick,
+    Scale = 1 << Get.Scale,
     Draw = 1 << Get.Draw,
     Move = 1 << Get.Move,
     Transform2D = 1 << Get.Transform2D,

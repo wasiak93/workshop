@@ -4,6 +4,7 @@ import {control_brick} from "../components/com_control_brick.js";
 import {control_paddle} from "../components/com_control_paddle.js";
 import {draw_rect} from "../components/com_draw.js";
 import {move} from "../components/com_move.js";
+import {scale} from "../components/com_scale.js";
 import {Game} from "../game.js";
 
 export function world_one(game: Game) {
@@ -20,6 +21,7 @@ export function world_one(game: Game) {
             move(600),
             control_ball((Math.random() + 1) * Math.PI),
             draw_rect(20, 20, "orange"),
+            scale(3),
             collide([20, 20]),
         ],
     });

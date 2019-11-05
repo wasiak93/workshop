@@ -15,6 +15,7 @@ function update(game: Game, entity: Entity, delta: number) {
     let control = game[Get.ControlBall][entity];
     if (game[Get.Collide][entity].Collisions.length) {
         let collision = game[Get.Collide][entity].Collisions[0];
+
         if (collision.Hit[0] !== 0 || collision.Hit[1] !== 0) {
             game.Destroy(entity);
         }
