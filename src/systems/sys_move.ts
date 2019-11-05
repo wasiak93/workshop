@@ -15,7 +15,7 @@ export function sys_move(game: Game, delta: number) {
 function update(game: Game, entity: Entity, delta: number) {
     let direction = game[Get.Move][entity].direction;
     normalize(direction, direction);
-    let speed = 50;
+    let speed = game[Get.Move][entity].speed;
     let transform = game[Get.Transform2D][entity];
     transform.Translation[0] += direction[0] * speed * delta;
     transform.Translation[1] += direction[1] * speed * delta;
