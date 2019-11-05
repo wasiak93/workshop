@@ -3,6 +3,7 @@ import {Get, Has} from "../components/com_index.js";
 import {Transform2D} from "../components/com_transform2d.js";
 import {Game} from "../game.js";
 import {Vec2} from "../math/index.js";
+import {negate} from "../math/vec2.js";
 
 const QUERY = Has.Transform2D | Has.Collide;
 
@@ -26,9 +27,33 @@ export function sys_collide(game: Game, delta: number) {
     }
 }
 
-function compute_aabb(transform: Transform2D, collide: Collide) {}
+function compute_aabb(transform: Transform2D, collide: Collide) {
+    collide.Center[0] = transform.Translation[0];
+    collide.Center[1] = transform.Translation[1];
+    collide.Min[0] = collide.Center[0] - collide.Size[0] / 2;
+    collide.Min[1] = collide.Center[1] - collide.Size[1] / 2;
+    collide.Max[0] = collide.Center[0] + collide.Size[0] / 2;
+    collide.Max[1] = collide.Center[1] + collide.Size[1] / 2;
+}
 
-function check_collisions(collider: Collide, colliders: Collide[]) {}
+function check_collisions(collider: Collide, colliders: Collide[]) {
+    for (let i = 0; i < colliders.length; i++) {
+        if (collider.EntityId === colliders[i].EntityId) {
+            return;
+        }
+        if (intersect_aabb(collider, colliders[i])) {
+            let penetrate = penetrate_aabb(collider, colliders[i]);
+            collider.Collisions.push({
+                Other: colliders[i],
+                Hit: penetrate,
+            });
+            colliders[i].Collisions.push({
+                Other: collider,
+                Hit: negate([0, 0], penetrate),
+            });
+        }
+    }
+}
 
 function penetrate_aabb(a: Collide, b: Collide) {
     let distance_x = a.Center[0] - b.Center[0];

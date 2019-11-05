@@ -84,9 +84,10 @@ export class Game implements ComponentData {
 
         sys_control_paddle(this, delta);
         sys_control_ball(this, delta);
+        sys_move(this, delta);
         sys_transform2d(this, delta);
         sys_collide(this, delta);
-        sys_move(this, delta);
+
         sys_draw2d(this, delta);
 
         // Performance.
