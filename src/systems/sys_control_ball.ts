@@ -1,6 +1,5 @@
 import {Get, Has} from "../components/com_index.js";
 import {Entity, Game} from "../game.js";
-import {Vec2} from "../math/index.js";
 
 const QUERY = Has.Move | Has.ControlBall;
 
@@ -13,5 +12,6 @@ export function sys_control_ball(game: Game, delta: number) {
 }
 
 function update(game: Game, entity: Entity, delta: number) {
-    game[Get.Move][entity].direction = <Vec2>[1, 1];
+    game[Get.Move][entity].direction[0] = 1;
+    game[Get.Move][entity].direction[1] = 1;
 }
