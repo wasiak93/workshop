@@ -21,6 +21,15 @@ function update(game: Game, entity: Entity, delta: number) {
     if (game.InputState["ArrowLeft"]) {
         game[Get.Move][entity].direction[0] -= 1; //x = x-1 = 0 lub -1
     }
+    let transform = game[Get.Transform2D][entity];
+
+    if (transform.Translation[0] > game.ViewportWidth - game[Get.Draw][entity].Width / 2) {
+        transform.Translation[0] = game.ViewportWidth - game[Get.Draw][entity].Width / 2;
+    }
+    if (transform.Translation[0] < game[Get.Draw][entity].Width / 2) {
+        transform.Translation[0] = game[Get.Draw][entity].Width / 2;
+    }
+
     // if (game.InputState["ArrowUp"]) {
     //     game[Get.Move][entity].direction[1] = -1; //y= -1
     // }
