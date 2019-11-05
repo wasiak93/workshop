@@ -8,6 +8,6 @@ export function world_two(game: Game) {
 
     game.Add({
         Translation: [game.ViewportWidth / 2, game.ViewportHeight / 2],
-        Using: [move(50), control_ball(), draw_rect(50, 50, "blue")],
+        Using: [move(50), control_ball(2), draw_rect(50, 50, "blue")],
     });
 }
