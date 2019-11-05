@@ -7,6 +7,10 @@ export function world_one(game: Game) {
 
     game.Add({
         Translation: [game.ViewportWidth / 2, game.ViewportHeight / 2],
-        Using: [control_paddle(), draw_rect(100)],
+        Using: [draw_rect(150)],
+    });
+    game.Add({
+        Translation: [game.ViewportWidth / 3, game.ViewportHeight / 2],
+        Using: [control_paddle(), draw_rect(150)],
     });
 }
