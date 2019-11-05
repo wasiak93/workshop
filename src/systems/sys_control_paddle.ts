@@ -13,13 +13,20 @@ export function sys_control_paddle(game: Game, delta: number) {
 }
 
 function update(game: Game, entity: Entity, delta: number) {
+    let direction = <Vec2>[0, 0];
     if (game.InputState["ArrowRight"]) {
-        console.log("klik w prawo");
+        direction[0] = 1;
     }
     if (game.InputState["ArrowLeft"]) {
-        console.log("klik w lewo");
+        direction[0] = -1;
     }
-    let direction = <Vec2>[0, 0];
+    if (game.InputState["ArrowUp"]) {
+        direction[1] = -1;
+    }
+    if (game.InputState["ArrowDown"]) {
+        direction[1] = 1;
+    }
+
     let speed = 300;
     let transform = game[Get.Transform2D][entity];
     transform.Translation[0] += direction[0] * speed * delta;
