@@ -3,6 +3,7 @@ import {ControlBall} from "./components/com_control_ball.js";
 import {ControlPaddle} from "./components/com_control_paddle.js";
 import {Draw} from "./components/com_draw.js";
 import {ComponentData, Get, Has} from "./components/com_index.js";
+import {Move} from "./components/com_move.js";
 import {Transform2D, transform2d} from "./components/com_transform2d.js";
 import {Rad, Vec2} from "./math/index.js";
 import {sys_collide} from "./systems/sys_collide.js";
@@ -10,6 +11,7 @@ import {sys_control_ball} from "./systems/sys_control_ball.js";
 import {sys_control_paddle} from "./systems/sys_control_paddle.js";
 import {sys_draw2d} from "./systems/sys_draw2d.js";
 import {sys_framerate} from "./systems/sys_framerate.js";
+import {sys_move} from "./systems/sys_move.js";
 import {sys_performance} from "./systems/sys_performance.js";
 import {sys_transform2d} from "./systems/sys_transform2d.js";
 
@@ -23,6 +25,7 @@ export class Game implements ComponentData {
     public [Get.ControlPaddle]: Array<ControlPaddle> = [];
     public [Get.ControlBall]: Array<ControlBall> = [];
     public [Get.Draw]: Array<Draw> = [];
+    public [Get.Move]: Array<Move> = [];
     public [Get.Transform2D]: Array<Transform2D> = [];
 
     public ViewportWidth = window.innerWidth;
@@ -83,6 +86,7 @@ export class Game implements ComponentData {
         sys_control_ball(this, delta);
         sys_transform2d(this, delta);
         sys_collide(this, delta);
+        sys_move(this, delta);
         sys_draw2d(this, delta);
 
         // Performance.

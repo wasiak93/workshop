@@ -1,5 +1,6 @@
 import {control_paddle} from "../components/com_control_paddle.js";
 import {draw_rect} from "../components/com_draw.js";
+import {move} from "../components/com_move.js";
 import {Game} from "../game.js";
 
 export function world_one(game: Game) {
@@ -7,6 +8,6 @@ export function world_one(game: Game) {
 
     game.Add({
         Translation: [game.ViewportWidth / 2, game.ViewportHeight / 2],
-        Using: [control_paddle(), draw_rect(200, 50, "blue")],
+        Using: [move(), control_paddle(), draw_rect(200, 50, "blue")],
     });
 }

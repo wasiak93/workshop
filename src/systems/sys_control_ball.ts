@@ -1,9 +1,8 @@
 import {Get, Has} from "../components/com_index.js";
 import {Entity, Game} from "../game.js";
 import {Vec2} from "../math/index.js";
-import {normalize} from "../math/vec2.js";
 
-const QUERY = Has.Transform2D | Has.ControlBall;
+const QUERY = Has.Move | Has.ControlBall;
 
 export function sys_control_ball(game: Game, delta: number) {
     for (let i = 0; i < game.World.length; i++) {
@@ -14,11 +13,5 @@ export function sys_control_ball(game: Game, delta: number) {
 }
 
 function update(game: Game, entity: Entity, delta: number) {
-    let direction = <Vec2>[1, 1];
-    normalize(direction, direction);
-    let speed = 50;
-    let transform = game[Get.Transform2D][entity];
-    transform.Translation[0] += direction[0] * speed * delta;
-    transform.Translation[1] += direction[1] * speed * delta;
-    transform.Dirty = true;
+    game[Get.Move][entity].direction = <Vec2>[1, 1];
 }

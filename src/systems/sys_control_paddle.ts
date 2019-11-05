@@ -2,7 +2,7 @@ import {Get, Has} from "../components/com_index.js";
 import {Entity, Game} from "../game.js";
 import {Vec2} from "../math/index.js";
 
-const QUERY = Has.Transform2D | Has.ControlPaddle;
+const QUERY = Has.Move | Has.ControlPaddle;
 
 export function sys_control_paddle(game: Game, delta: number) {
     for (let i = 0; i < game.World.length; i++) {
@@ -27,9 +27,5 @@ function update(game: Game, entity: Entity, delta: number) {
         direction[1] += 1; // y= y + 1 = 0 lub +1
     }
 
-    let speed = 300;
-    let transform = game[Get.Transform2D][entity];
-    transform.Translation[0] += direction[0] * speed * delta;
-    transform.Translation[1] += direction[1] * speed * delta;
-    transform.Dirty = true;
+    game[Get.Move][entity].direction = direction;
 }
