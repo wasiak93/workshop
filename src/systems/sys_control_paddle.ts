@@ -13,18 +13,18 @@ export function sys_control_paddle(game: Game, delta: number) {
 }
 
 function update(game: Game, entity: Entity, delta: number) {
-    let direction = <Vec2>[0, 0];
+    let direction = <Vec2>[0, 0]; //x=0 y=0
     if (game.InputState["ArrowRight"]) {
-        direction[0] = 1;
+        direction[0] = 1; //x=1
     }
     if (game.InputState["ArrowLeft"]) {
-        direction[0] = -1;
+        direction[0] -= 1; //x = x-1 = 0 lub -1
     }
     if (game.InputState["ArrowUp"]) {
-        direction[1] = -1;
+        direction[1] = -1; //y= -1
     }
     if (game.InputState["ArrowDown"]) {
-        direction[1] = 1;
+        direction[1] += 1; // y= y + 1 = 0 lub +1
     }
 
     let speed = 300;
